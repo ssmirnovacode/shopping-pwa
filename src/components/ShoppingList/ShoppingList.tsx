@@ -1,16 +1,27 @@
+import { useEffect, useState } from "react";
 import { DAFAULT_SHOP_ID, LIST } from "../../utils/constants";
 import { ListItem } from "./ListItem";
 import "./ShoppingList.scss";
+import type { ShoppingListItem } from "../../utils/types";
+import { getAllShoppingItems } from "../../api/items-service";
 
 type Props = {
   shopId: string;
 };
 export const ShoppingList = ({ shopId = DAFAULT_SHOP_ID }: Props) => {
-  // @TODO fetch list for the shop
+  const [items, setItems] = useState<ShoppingListItem[] | undefined>();
+
+  useEffect(() => {
+    getAllShoppingItems()
+      .then((data) => setItems(data.sort((a, b) => +b.isActive - +a.isActive)))
+      .catch(() => console.error("Error in fetching shopping items"));
+  }, [shopId]);
+
+  if (!items) return <p>No items found on this list</p>;
 
   return (
     <ul className="shoppingList">
-      {LIST.sort((a, b) => +b.isActive - +a.isActive).map((item) => (
+      {items.map((item) => (
         <ListItem key={item.id} item={item} />
       ))}
     </ul>
