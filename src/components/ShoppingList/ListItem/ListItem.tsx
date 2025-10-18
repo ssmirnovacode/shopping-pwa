@@ -35,7 +35,7 @@ export const ListItem = ({ item }: Props) => {
   };
 
   return (
-    <li className="listItem">
+    <li className={`listItem ${item.isActive ? "" : "inactive"}`}>
       <div
         onClick={handleItemClick}
         className={`name ${item.isActive ? "" : "strikethrough"}`}
@@ -64,7 +64,7 @@ export const ListItem = ({ item }: Props) => {
           value={values.price}
         />
       </div>
-      <button className="add" onClick={handleAdd}>
+      <button className="add" onClick={handleAdd} disabled={!item.isActive}>
         Add
       </button>
       <button className="delete" onClick={handleDelete}>

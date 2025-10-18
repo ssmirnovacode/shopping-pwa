@@ -10,7 +10,7 @@ export const ShoppingList = ({ shopId = DAFAULT_SHOP_ID }: Props) => {
 
   return (
     <ul className="shoppingList">
-      {LIST.map((item) => (
+      {LIST.sort((a, b) => +b.isActive - +a.isActive).map((item) => (
         <ListItem key={item.id} item={item} />
       ))}
     </ul>

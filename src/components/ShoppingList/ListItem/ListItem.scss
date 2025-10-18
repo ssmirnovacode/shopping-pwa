@@ -13,6 +13,9 @@
     border-bottom: 1px solid grey;
     padding: .3rem;
     text-align: center;
+    &.inactive {
+        color: grey;
+    }
     .name {
         grid-area: itemName;
         text-align: start;
