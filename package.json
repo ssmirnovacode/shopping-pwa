@@ -13,6 +13,7 @@
   "dependencies": {
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
+    "sass": "^1.93.2",
     "vite-plugin-pwa": "^1.1.0",
     "workbox-window": "^7.3.0"
   },

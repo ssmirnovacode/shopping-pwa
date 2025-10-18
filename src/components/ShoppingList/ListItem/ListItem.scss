@@ -1,0 +1,28 @@
+
+
+.listItem {
+     display: grid;
+    grid-template-areas: "name quantity price add delete";
+    grid-template-columns: 3fr 1fr 1fr 1fr 1fr; 
+    align-items: center;
+    border-bottom: 1px solid grey;
+    padding: .3rem;
+    text-align: center;
+    .name {
+        grid-area: 'name';
+        text-align: start;
+    }
+    .quantity {
+        grid-area: 'quantity';
+    }
+    .price {
+        grid-area: 'price';
+    }
+    .add {
+        grid-area: 'add';
+    }
+    .delete {
+        grid-area: 'delete';
+    }
+
+}
