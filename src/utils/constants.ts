@@ -5,6 +5,7 @@ export const LIST = [
     name: "Bananas",
     price: 2.5,
     quantity: 1,
+    isActive: true,
   },
   {
     id: "124",
@@ -12,6 +13,7 @@ export const LIST = [
     name: "Whole Milk",
     price: 1.2,
     quantity: 1,
+    isActive: false,
   },
   {
     id: "125",
@@ -19,6 +21,7 @@ export const LIST = [
     name: "White Bread",
     price: 1.8,
     quantity: 1,
+    isActive: true,
   },
   {
     id: "126",
@@ -26,6 +29,7 @@ export const LIST = [
     name: "Chicken Breast",
     price: 6.5,
     quantity: 1,
+    isActive: false,
   },
   {
     id: "127",
@@ -33,6 +37,7 @@ export const LIST = [
     name: "Eggs",
     price: 3.2,
     quantity: 1,
+    isActive: true,
   },
   {
     id: "128",
@@ -40,6 +45,7 @@ export const LIST = [
     name: "Pasta",
     price: 1.1,
     quantity: 1,
+    isActive: true,
   },
   {
     id: "129",
@@ -47,6 +53,7 @@ export const LIST = [
     name: "Tomato Sauce",
     price: 1.5,
     quantity: 1,
+    isActive: false,
   },
   {
     id: "130",
@@ -54,6 +61,7 @@ export const LIST = [
     name: "Olive Oil",
     price: 4.8,
     quantity: 1,
+    isActive: true,
   },
   {
     id: "131",
@@ -61,6 +69,7 @@ export const LIST = [
     name: "Coffee",
     price: 3.9,
     quantity: 1,
+    isActive: false,
   },
   {
     id: "132",
@@ -68,6 +77,7 @@ export const LIST = [
     name: "Yogurt",
     price: 2.3,
     quantity: 1,
+    isActive: true,
   },
   {
     id: "133",
@@ -75,6 +85,7 @@ export const LIST = [
     name: "Cheese",
     price: 3.7,
     quantity: 1,
+    isActive: false,
   },
   {
     id: "134",
@@ -82,6 +93,7 @@ export const LIST = [
     name: "Butter",
     price: 2.1,
     quantity: 1,
+    isActive: true,
   },
   {
     id: "135",
@@ -89,6 +101,7 @@ export const LIST = [
     name: "Orange Juice",
     price: 2.4,
     quantity: 1,
+    isActive: false,
   },
   {
     id: "136",
@@ -96,6 +109,7 @@ export const LIST = [
     name: "Cereal",
     price: 3.0,
     quantity: 1,
+    isActive: true,
   },
   {
     id: "137",
@@ -103,6 +117,7 @@ export const LIST = [
     name: "Toilet Paper",
     price: 4.2,
     quantity: 1,
+    isActive: false,
   },
 ];
 

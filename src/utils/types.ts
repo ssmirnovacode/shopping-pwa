@@ -4,4 +4,5 @@ export type ShoppingListItem = {
   shopId: string;
   quantity: number;
   price: number;
+  isActive: boolean;
 };

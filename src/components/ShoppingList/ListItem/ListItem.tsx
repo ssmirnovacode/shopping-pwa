@@ -1,4 +1,4 @@
-import { useState, type ChangeEvent, type InputEvent } from "react";
+import { useState, type ChangeEvent } from "react";
 import type { ShoppingListItem } from "../../../utils/types";
 import "./ListItem.scss";
 
@@ -19,9 +19,35 @@ export const ListItem = ({ item }: Props) => {
   const handleQuantityChange = (e: ChangeEvent<HTMLInputElement>) => {
     setValues((values) => ({ ...values, quantity: Number(e.target.value) }));
   };
+
+  const handleAdd = () => {
+    // update data
+    // isActive -> false
+  };
+
+  const handleDelete = () => {
+    // remove item from DB
+  };
+
+  // toggling active status (srikethrough)
+  const handleItemClick = () => {
+    // toggle item isActive prop
+  };
+
   return (
     <li className="listItem">
-      <div className="name">{item.name}</div>
+      <div
+        onClick={handleItemClick}
+        className={`name ${item.isActive ? "" : "strikethrough"}`}
+      >
+        {item.name}
+      </div>
+      <label className="label" htmlFor="input-quantity">
+        Qty
+      </label>
+      <label className="label" htmlFor="input-price">
+        Price
+      </label>
       <div className="quantity">
         <input
           id="input-quantity"
@@ -38,8 +64,12 @@ export const ListItem = ({ item }: Props) => {
           value={values.price}
         />
       </div>
-      <button className="add">Add</button>
-      <button className="delete">Dlt</button>
+      <button className="add" onClick={handleAdd}>
+        Add
+      </button>
+      <button className="delete" onClick={handleDelete}>
+        Dlt
+      </button>
     </li>
   );
 };
