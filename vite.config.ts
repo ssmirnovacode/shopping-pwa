@@ -7,50 +7,15 @@ export default defineConfig({
     react(),
     VitePWA({
       registerType: "autoUpdate",
-      includeAssets: ["favicon.ico", "pwa-192x192.png", "pwa-512x512.png"],
-      devOptions: {
-        enabled: true,
-        navigateFallback: "index.html",
-      },
-      workbox: {
-        globPatterns: [], // ["**/*.{js,css,html,ico,png,svg,woff,woff2}"],
-        clientsClaim: true,
-        skipWaiting: true,
-        navigateFallback: null,
-        navigateFallbackAllowlist: [/^(?!\/__).*/],
-        offlineGoogleAnalytics: false,
-        runtimeCaching: [
-          // Handle ALL navigation requests (this replaces navigateFallback)
-          {
-            urlPattern: ({ request }) => request.mode === "navigate",
-            handler: "NetworkFirst",
-            options: {
-              cacheName: "navigation-cache",
-              networkTimeoutSeconds: 3,
-              matchOptions: {
-                ignoreSearch: true,
-              },
-              plugins: [
-                {
-                  cachedResponseWillBeUsed: async ({ cachedResponse }) => {
-                    // If we have a cached response, use it
-                    if (cachedResponse) {
-                      return cachedResponse;
-                    }
-                    // Otherwise, let NetworkFirst handle it
-                    return null;
-                  },
-                },
-              ],
-            },
-          },
-        ],
-      },
+      includeAssets: ["favicon.ico", "apple-touch-icon.png", "masked-icon.svg"],
       manifest: {
         name: "Shopping PWA",
         short_name: "ShoppingPWA",
         description: "Shopping list app",
         theme_color: "#ffffff",
+        background_color: "#ffffff",
+        display: "standalone",
+        start_url: "/",
         icons: [
           {
             src: "pwa-192x192.png",
@@ -67,6 +32,52 @@ export default defineConfig({
             sizes: "512x512",
             type: "image/png",
             purpose: "any maskable",
+          },
+        ],
+      },
+      workbox: {
+        globPatterns: ["**/*.{js,css,html,ico,png,svg,webmanifest}"],
+        runtimeCaching: [
+          {
+            urlPattern: /\.(?:js|css|html)$/,
+            handler: "StaleWhileRevalidate",
+            options: {
+              cacheName: "static-resources",
+            },
+          },
+          {
+            urlPattern: /\.(?:png|jpg|jpeg|svg|ico)$/,
+            handler: "CacheFirst",
+            options: {
+              cacheName: "images",
+              expiration: {
+                maxEntries: 50,
+              },
+            },
+          },
+          // Cache the root page with NetworkFirst strategy
+          {
+            urlPattern: /\/$/,
+            handler: "NetworkFirst",
+            options: {
+              cacheName: "root-page",
+              networkTimeoutSeconds: 3,
+              cacheableResponse: {
+                statuses: [0, 200],
+              },
+            },
+          },
+          // Cache other navigation requests
+          {
+            urlPattern: ({ request }) => request.mode === "navigate",
+            handler: "NetworkFirst",
+            options: {
+              cacheName: "pages",
+              networkTimeoutSeconds: 3,
+              cacheableResponse: {
+                statuses: [0, 200],
+              },
+            },
           },
         ],
       },
