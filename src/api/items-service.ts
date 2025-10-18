@@ -45,3 +45,13 @@ export const getAllShoppingItems = async (): Promise<ShoppingListItem[]> => {
 
   return allItems;
 };
+
+export const deleteShoppingItem = async (id: string): Promise<boolean> => {
+  try {
+    await itemsStore.removeItem(id);
+    return true;
+  } catch (error) {
+    console.error(`Error deleting item with id ${id}:`, error);
+    return false;
+  }
+};

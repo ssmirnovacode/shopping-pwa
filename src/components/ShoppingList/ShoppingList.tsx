@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { DAFAULT_SHOP_ID, LIST } from "../../utils/constants";
+import { DAFAULT_SHOP_ID } from "../../utils/constants";
 import { ListItem } from "./ListItem";
 import "./ShoppingList.scss";
 import type { ShoppingListItem } from "../../utils/types";

@@ -1,6 +1,10 @@
 import { useState, type ChangeEvent } from "react";
 import type { ShoppingListItem } from "../../../utils/types";
 import "./ListItem.scss";
+import {
+  deleteShoppingItem,
+  setShoppingItem,
+} from "../../../api/items-service";
 
 type Props = {
   item: ShoppingListItem;
@@ -12,26 +16,35 @@ export const ListItem = ({ item }: Props) => {
     quantity: item.quantity,
   });
 
-  const handlePriceChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setValues((values) => ({ ...values, price: Number(e.target.value) }));
+  const handlePriceChange = async (e: ChangeEvent<HTMLInputElement>) => {
+    const price = Number(e.target.value);
+    setValues((values) => ({ ...values, price }));
+    await setShoppingItem({ ...item, price });
   };
 
-  const handleQuantityChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setValues((values) => ({ ...values, quantity: Number(e.target.value) }));
+  const handleQuantityChange = async (e: ChangeEvent<HTMLInputElement>) => {
+    const quantity = Number(e.target.value);
+    setValues((values) => ({ ...values, quantity }));
+    await setShoppingItem({ ...item, quantity });
   };
 
-  const handleAdd = () => {
-    // update data
+  const handleAdd = async () => {
+    // update data in analytics
+
     // isActive -> false
+    await setShoppingItem({ ...item, isActive: false });
   };
 
   const handleDelete = () => {
     // remove item from DB
+    deleteShoppingItem(item.id);
   };
 
   // toggling active status (srikethrough)
-  const handleItemClick = () => {
+  const handleItemClick = async () => {
     // toggle item isActive prop
+    await setShoppingItem({ ...item, isActive: !item.isActive });
+    console.log({ item: { ...item, isActive: !item.isActive } });
   };
 
   return (
