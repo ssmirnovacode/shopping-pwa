@@ -1,20 +1,20 @@
 import { useState } from "react";
 import "./CreateItem.scss";
-import { useAppDispatch } from "../../../redux/hooks";
+import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import { saveItem } from "../../../redux/shoppingListSlice";
 import { setShoppingItem } from "../../../api/items-service";
 import type { ShoppingListItem } from "../../../utils/types";
-import { DAFAULT_SHOP_ID } from "../../../utils/constants";
 
 export const CreateItem = () => {
   const [text, setText] = useState("");
+  const shopId = useAppSelector((state) => state.shoppingItems.shopId);
   const dispatch = useAppDispatch();
 
   const handleCreateNewItem = async () => {
     const id = Date.now().toString();
     const newItem: ShoppingListItem = {
       id,
-      shopId: DAFAULT_SHOP_ID, // @TODO add shopId to slice
+      shopId,
       name: text,
       quantity: 1,
       price: 1, // @TODO

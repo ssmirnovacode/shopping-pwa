@@ -1,14 +1,17 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import type { ShoppingListItem } from "../utils/types";
+import { DAFAULT_SHOP_ID } from "../utils/constants";
 
 type State = {
   items: ShoppingListItem[];
+  shopId: string;
   // @TODO add shopId
 };
 
 const initialState: State = {
   items: [],
+  shopId: DAFAULT_SHOP_ID,
 };
 
 export const shoppingListSlice = createSlice({
@@ -44,9 +47,13 @@ export const shoppingListSlice = createSlice({
         ...state.items.slice(idx + 1),
       ];
     },
+    setShopId: (state, action: PayloadAction<string>) => {
+      state.shopId = action.payload;
+    },
   },
 });
 
-export const { setItems, saveItem, removeItem } = shoppingListSlice.actions;
+export const { setItems, saveItem, removeItem, setShopId } =
+  shoppingListSlice.actions;
 
 export default shoppingListSlice.reducer;

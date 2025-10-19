@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import { DAFAULT_SHOP_ID } from "../../utils/constants";
 import { ListItem } from "./ListItem";
 import "./ShoppingList.scss";
 import { getAllShoppingItems } from "../../api/items-service";
@@ -7,11 +6,8 @@ import { CreateItem } from "./CreateItem/CreateItem";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { setItems } from "../../redux/shoppingListSlice";
 
-type Props = {
-  shopId: string;
-};
-export const ShoppingList = ({ shopId = DAFAULT_SHOP_ID }: Props) => {
-  const items = useAppSelector((state) => state.shoppingItems.items);
+export const ShoppingList = () => {
+  const { items, shopId } = useAppSelector((state) => state.shoppingItems);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
