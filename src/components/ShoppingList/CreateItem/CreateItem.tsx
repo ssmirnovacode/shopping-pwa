@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "./CreateItem.scss";
 
 type Props = {
   onCreate: (id: string, text: string) => void;
@@ -14,13 +15,15 @@ export const CreateItem = ({ onCreate }: Props) => {
     setText("");
   };
   return (
-    <div>
+    <div className="createItem">
       <input
         placeholder="Enter new item"
         onChange={(e) => setText(e.target.value)}
         value={text}
       />
-      <button onClick={handleCreate}>Create</button>
+      <button onClick={handleCreate} disabled={!text}>
+        Create
+      </button>
     </div>
   );
 };

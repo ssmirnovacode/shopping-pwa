@@ -35,12 +35,12 @@ export const ShoppingList = ({ shopId = DAFAULT_SHOP_ID }: Props) => {
 
   return (
     <>
+      <CreateItem onCreate={handleCreateNewItem} />
       <ul className="shoppingList">
         {items.map((item) => (
           <ListItem key={item.id} item={item} />
         ))}
       </ul>
-      <CreateItem onCreate={handleCreateNewItem} />
     </>
   );
 };
