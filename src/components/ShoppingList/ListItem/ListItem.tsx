@@ -5,6 +5,8 @@ import {
   deleteShoppingItem,
   setShoppingItem,
 } from "../../../api/items-service";
+import { useAppDispatch } from "../../../redux/hooks";
+import { removeItem, saveItem } from "../../../redux/shoppingListSlice";
 
 type Props = {
   item: ShoppingListItem;
@@ -16,35 +18,44 @@ export const ListItem = ({ item }: Props) => {
     quantity: item.quantity,
   });
 
+  const dispatch = useAppDispatch();
+
   const handlePriceChange = async (e: ChangeEvent<HTMLInputElement>) => {
     const price = Number(e.target.value);
     setValues((values) => ({ ...values, price }));
-    await setShoppingItem({ ...item, price });
+    const updatedItem = { ...item, price };
+    await setShoppingItem(updatedItem);
+    dispatch(saveItem(updatedItem));
   };
 
   const handleQuantityChange = async (e: ChangeEvent<HTMLInputElement>) => {
     const quantity = Number(e.target.value);
     setValues((values) => ({ ...values, quantity }));
-    await setShoppingItem({ ...item, quantity });
+    const updatedItem = { ...item, quantity };
+    await setShoppingItem(updatedItem);
+    dispatch(saveItem(updatedItem));
   };
 
   const handleAdd = async () => {
     // update data in analytics
-
+    const newItem = { ...item, isActive: false };
     // isActive -> false
-    await setShoppingItem({ ...item, isActive: false });
+    await setShoppingItem(newItem);
+    dispatch(saveItem(newItem));
   };
 
   const handleDelete = () => {
     // remove item from DB
     deleteShoppingItem(item.id);
+    dispatch(removeItem(item.id));
   };
 
   // toggling active status (srikethrough)
   const handleItemClick = async () => {
     // toggle item isActive prop
-    await setShoppingItem({ ...item, isActive: !item.isActive });
-    console.log({ item: { ...item, isActive: !item.isActive } });
+    const updatedItem = { ...item, isActive: !item.isActive };
+    await setShoppingItem(updatedItem);
+    dispatch(saveItem(updatedItem));
   };
 
   return (
