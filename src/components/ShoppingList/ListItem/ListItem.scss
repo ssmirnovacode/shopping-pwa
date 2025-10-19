@@ -55,4 +55,101 @@
         }
     }
 
+    // Tablet (768px and up)
+    @media (min-width: 768px) {
+        grid-template-areas: 
+            "itemName itemName qtyLabel priceLabel add delete"
+            "itemName itemName quantity price add delete";
+        grid-template-columns: 2fr 1fr 1fr 1fr 1fr 1fr;
+        grid-template-rows: auto auto;
+        gap: 0.5rem;
+        padding: .5rem;
+
+        .name {
+            text-align: center;
+        }
+
+        .label:first-of-type,
+        .label:last-of-type {
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+
+        .quantity, .price {
+            input {
+                max-width: 120px;
+                padding: 0.3rem;
+            }
+        }
+
+        .add, .delete {
+            padding: 0.4rem 0.8rem;
+            font-size: 0.9rem;
+        }
+    }
+
+    // Desktop (1024px and up)
+    @media (min-width: 1024px) {
+    grid-template-areas: "itemName qtyLabel priceLabel add delete"
+                         "itemName quantity price add delete";
+    grid-template-columns: 3fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 0.5rem 1rem;
+    padding: .7rem;
+
+    // Labels remain visible
+    .label:first-of-type {
+        grid-area: qtyLabel;
+        font-size: 0.8rem;
+        font-weight: bold;
+        margin-bottom: -0.5rem; // Pull closer to input
+    }
+    
+    .label:last-of-type {
+        grid-area: priceLabel;
+        font-size: 0.8rem;
+        font-weight: bold;
+        margin-bottom: -0.5rem;
+    }
+
+    .name {
+        grid-area: itemName;
+        text-align: start;
+        font-size: 1.1rem;
+        align-self: center;
+    }
+
+    .quantity {
+        grid-area: quantity;
+    }
+
+    .price {
+        grid-area: price;
+    }
+
+
+    .add, .delete {
+        padding: 0.5rem 1rem;
+        font-size: 1rem;
+        transition: all 0.2s ease;
+
+        &:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+    }
+}
+
+    // Large Desktop (1440px and up)
+    @media (min-width: 1440px) {
+        grid-template-columns: 4fr 1fr 1fr 1fr 1fr;
+        padding: 1rem;
+        
+        .quantity, .price {
+            input {
+                max-width: 160px;
+            }
+        }
+    }
+
 }

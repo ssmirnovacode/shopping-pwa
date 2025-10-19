@@ -4,6 +4,7 @@ import type { ShoppingListItem } from "../utils/types";
 
 type State = {
   items: ShoppingListItem[];
+  // @TODO add shopId
 };
 
 const initialState: State = {
