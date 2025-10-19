@@ -1,4 +1,4 @@
-import { useId, useState } from "react";
+import { useState } from "react";
 
 type Props = {
   onCreate: (id: string, text: string) => void;
@@ -7,9 +7,9 @@ export const CreateItem = ({ onCreate }: Props) => {
   const [text, setText] = useState("");
 
   //@TODO amplify form to set the price
-  const id = useId();
 
   const handleCreate = () => {
+    const id = Date.now().toString();
     onCreate(id, text);
     setText("");
   };
