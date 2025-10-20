@@ -18,12 +18,13 @@ export const ShoppingList = () => {
       .catch(() => console.error("Error in fetching shopping items"));
   }, [shopId]);
 
-  if (!items.length) return <p>No items found on this list</p>;
+  if (!items.length) return;
 
   return (
     <>
       <CreateItem />
       <ul className="shoppingList">
+        {!items.length && <p>No items found on this list</p>}
         {items.map((item) => (
           <ListItem key={item.id} item={item} />
         ))}
