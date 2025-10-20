@@ -31,7 +31,9 @@ export const shoppingListSlice = createSlice({
         (item) => item.id === action.payload.id
       );
       if (idx < 0) {
-        state.items = [...state.items, action.payload];
+        state.items = [...state.items, action.payload].sort(
+          (a, b) => +b.isActive - +a.isActive
+        );
         return;
       }
       state.items = [
