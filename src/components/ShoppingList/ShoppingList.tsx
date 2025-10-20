@@ -18,8 +18,6 @@ export const ShoppingList = () => {
       .catch(() => console.error("Error in fetching shopping items"));
   }, [shopId]);
 
-  if (!items.length) return;
-
   return (
     <>
       <CreateItem />
