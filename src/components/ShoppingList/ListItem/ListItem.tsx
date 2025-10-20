@@ -14,23 +14,23 @@ type Props = {
 
 export const ListItem = ({ item }: Props) => {
   const [values, setValues] = useState({
-    price: item.price,
-    quantity: item.quantity,
+    price: item.price.toString(),
+    quantity: item.quantity.toString(),
   });
 
   const dispatch = useAppDispatch();
 
   const handlePriceChange = async (e: ChangeEvent<HTMLInputElement>) => {
-    const price = Number(e.target.value);
-    setValues((values) => ({ ...values, price }));
+    const price = parseFloat(e.target.value);
+    setValues((values) => ({ ...values, price: e.target.value }));
     const updatedItem = { ...item, price };
     await setShoppingItem(updatedItem);
     dispatch(saveItem(updatedItem));
   };
-
+  // @TODO normalize inputs - dont let anything but numbers
   const handleQuantityChange = async (e: ChangeEvent<HTMLInputElement>) => {
-    const quantity = Number(e.target.value);
-    setValues((values) => ({ ...values, quantity }));
+    const quantity = parseFloat(e.target.value);
+    setValues((values) => ({ ...values, quantity: e.target.value }));
     const updatedItem = { ...item, quantity };
     await setShoppingItem(updatedItem);
     dispatch(saveItem(updatedItem));
@@ -75,7 +75,6 @@ export const ListItem = ({ item }: Props) => {
       <div className="quantity">
         <input
           id="input-quantity"
-          type="number"
           onChange={handleQuantityChange}
           value={values.quantity}
         />
@@ -83,7 +82,6 @@ export const ListItem = ({ item }: Props) => {
       <div className="price">
         <input
           id="input-price"
-          type="number"
           onChange={handlePriceChange}
           value={values.price}
         />
