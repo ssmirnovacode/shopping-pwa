@@ -11,7 +11,7 @@
     gap:0.2rem;
     align-items: center;
     border-bottom: 1px solid grey;
-    padding: .3rem;
+    padding: .5rem .3rem;
     text-align: center;
     &.inactive {
         color: grey;
@@ -19,6 +19,8 @@
     .name {
         grid-area: itemName;
         text-align: start;
+        font-size: 1.2rem;
+        font-weight: bold;
         &.strikethrough {
             text-decoration: line-through;
         }
@@ -26,10 +28,12 @@
     .label:first {
         grid-area: qtyLabel;
         display: block;
+        font-size: 0.8rem;
     }
     .label:last-of-type {
         grid-area: priceLabel;
         display: block;
+        font-size: 0.8rem;
     }
     .quantity {
         grid-area: quantity;
